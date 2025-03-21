@@ -10,6 +10,7 @@ class Retry(Predict):
     def __init__(self, module):
         super().__init__(module.signature)
         self.module = module
+        self.demos = module.demos
         self.original_signature = module.extended_signature if isinstance(module, dspy.ChainOfThought) else module.signature
         self.original_forward = module.forward
         self.new_signature = self._create_new_signature(self.original_signature)
